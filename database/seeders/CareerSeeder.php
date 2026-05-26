@@ -16,5 +16,8 @@ class CareerSeeder extends Seeder
         Career::create(['name' => 'Ingeniería en Sistemas']);
         Career::create(['name' => 'Licenciatura en Administración']);
         Career::create(['name' => 'Ingeniería en Mecatrónica']);
+        Career::create(['name' => 'Ingeniería en Sistemas']);
+        Career::create(['name' => 'Psicologia']);
+        Career::create(['name' => 'Contador Público']);
     }
 }

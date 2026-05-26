@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Career; // Corregido a 'App' con mayúscula
-use App\Models\User;   // Corregido a 'App' con mayúscula
+use App\Models\Career; 
+
+use App\Models\User; 
 
 class UserController extends Controller
 {
@@ -12,9 +13,8 @@ class UserController extends Controller
         $careers = Career::all();
         return view('register', compact('careers'));
     }
-
     public function store(Request $request){
-        // 1. Validar que los datos lleguen bien y la carrera exista en HeidiSQL
+
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|unique:users,email',
@@ -23,16 +23,15 @@ class UserController extends Controller
             'terms_accepted' => 'accepted',
         ]);
 
-        // 2. Guardar el usuario en la base de datos (Corregido sin espacios ni $)
         User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'password' => bcrypt($request->password), // Encripta la contraseña por seguridad
+            'password' => bcrypt($request->password),
             'career_id' => $request->career_id,
             'terms_accepted' => $request->has('terms_accepted'),
         ]);
 
-        // 3. Redireccionar con mensaje de éxito
+
         return redirect()->route('register')->with('success', 'Usuario registrado exitosamente.');
     }
 }
